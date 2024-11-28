@@ -1,0 +1,8 @@
+{
+  "name": "interfaz2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "id": "861e69a1"
+}
