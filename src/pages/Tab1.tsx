@@ -29,7 +29,7 @@ const TransportModal: React.FC<{
   setIsElectricVehicleChecked, 
   isAnyTransportChecked
 }) => (
-  <IonModal ref={modalRef} trigger="open-modal" canDismiss={canDismiss} presentingElement={presentingElement!}>
+  <IonModal ref={modalRef} canDismiss={canDismiss} presentingElement={presentingElement!}>
     <IonHeader>
       <IonToolbar>
         <IonTitle>Transportes Eléctricos</IonTitle>
@@ -69,7 +69,6 @@ const TransportModal: React.FC<{
               </tr>
             </thead>
             <tbody>
-              {/* Aquí puedes agregar dinámicamente las filas de transportes */}
               <tr>
                 <td>...0803</td>
                 <td>34 km</td>
@@ -147,13 +146,11 @@ const Tab1: React.FC = () => {
     setPresentingElement(page.current);
   }, []);
 
-  const dismiss = () => {
-    if (modal1.current) modal1.current.dismiss();
-    if (modal2.current) modal2.current.dismiss();
-    if (modal3.current) modal3.current.dismiss();
+  const dismiss = (modal: React.RefObject<HTMLIonModalElement>) => {
+    if (modal.current) modal.current.dismiss();
   };
 
-  const canDismiss = () => {
+  const canDismiss = (modal: React.RefObject<HTMLIonModalElement>) => {
     return new Promise<boolean>((resolve, reject) => {
       present({
         header: '¿Está seguro?',
@@ -177,20 +174,32 @@ const Tab1: React.FC = () => {
       </IonHeader>
 
       <IonContent id='contenido'>
-        <IonSearchbar placeholder="Ingresa el nombre de una estación o una dirección"></IonSearchbar>
-        <ExploreContainer name="Tab 1 page" />
+        {/* Parte 1 del texto */}
+        <div className="intro-text">
+          <h2>Moverse es muy fácil</h2>
+        </div>
 
-        {/* Modales con ID únicos para los botones */}
-        <IonButton id="open-modal-1" expand="block">Abrir Modal 1</IonButton>
-        <IonButton id="open-modal-2" expand="block">Abrir Modal 2</IonButton>
-        <IonButton id="open-modal-3" expand="block">Abrir Modal 3</IonButton>
+        {/* Parte 2 del texto */}
+        <div className="intro-text">
+          <p>Consulta el mapa y descubre lo fácil que es llegar a donde quieres ir.</p>
+        </div>
+
+        {/* Campo de búsqueda */}
+        <IonSearchbar placeholder="Ingresa el nombre de una estación o una dirección"></IonSearchbar>
+
+        <ExploreContainer name="" />
+
+        {/* Botones para abrir los modales */}
+        <IonButton id="open-modal-1" expand="block" onClick={() => modal1.current?.present()}> 1</IonButton>
+        <IonButton id="open-modal-2" expand="block" onClick={() => modal2.current?.present()}> 2</IonButton>
+        <IonButton id="open-modal-3" expand="block" onClick={() => modal3.current?.present()}> 3</IonButton>
 
         {/* Modales reutilizables */}
         <TransportModal
           modalRef={modal1}
           presentingElement={presentingElement}
-          dismiss={dismiss}
-          canDismiss={canDismiss}
+          dismiss={() => dismiss(modal1)}
+          canDismiss={() => canDismiss(modal1)}
           isElectricBikeChecked={isElectricBikeChecked}
           setIsElectricBikeChecked={setIsElectricBikeChecked}
           isElectricScooterChecked={isElectricScooterChecked}
@@ -202,8 +211,8 @@ const Tab1: React.FC = () => {
         <TransportModal
           modalRef={modal2}
           presentingElement={presentingElement}
-          dismiss={dismiss}
-          canDismiss={canDismiss}
+          dismiss={() => dismiss(modal2)}
+          canDismiss={() => canDismiss(modal2)}
           isElectricBikeChecked={isElectricBikeChecked}
           setIsElectricBikeChecked={setIsElectricBikeChecked}
           isElectricScooterChecked={isElectricScooterChecked}
@@ -215,8 +224,8 @@ const Tab1: React.FC = () => {
         <TransportModal
           modalRef={modal3}
           presentingElement={presentingElement}
-          dismiss={dismiss}
-          canDismiss={canDismiss}
+          dismiss={() => dismiss(modal3)}
+          canDismiss={() => canDismiss(modal3)}
           isElectricBikeChecked={isElectricBikeChecked}
           setIsElectricBikeChecked={setIsElectricBikeChecked}
           isElectricScooterChecked={isElectricScooterChecked}

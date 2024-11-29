@@ -1,5 +1,13 @@
 /* ---------------------------------- ESTILOS GENERALES ---------------------------------- */
 
+.container {
+  background-image: url('/resources\Mapa.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  text-align: center;
+}
 /* Estilo para el contenido principal */
 .custom-ion-content {
   padding: 20px;            /* Relleno de 20px */
@@ -9,25 +17,36 @@
 
 /* Estilo para IonContent */
 ion-content {
-  background-image: url('/workspaces/interfaz-2/resources/Mapa.png');
-  border-color: black;       /* Define el color del borde */
+   border-color: black;       /* Define el color del borde */
   border-width: 3px;         /* Establece el grosor del borde */
   border-style: solid;       /* Estilo de borde: sólido */
 }
+/* --------------------------------- TEXTO ANTES DEL SEARCH ---------------------------------- */
+
+.intro-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.intro-text h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0078d4; /* Ajusta el color según lo que necesites */
+}
+
+.intro-text p {
+  font-size: 16px;
+  color: #555;
+  margin-top: 5px;
+}
+
 
 /* --------------------------------- BARRA DE BÚSQUEDA ---------------------------------- */
 
 /* Estilo para la barra de búsqueda (flotante) */
 .search-bar {
-  position: fixed;           /* Fija la barra de búsqueda en la parte superior */
-  top: 10px;                 /* 10px desde la parte superior */
-  left: 50%;                 /* Centrado horizontal */
-  transform: translateX(-50%); /* Centrado exacto */
-  width: 80%;                /* Ancho al 80% del contenedor */
-  max-width: 600px;          /* Ancho máximo de 600px */
-  z-index: 1000;             /* Asegura que esté por encima de otros elementos */
-  margin-bottom: 20px;       /* Espacio debajo de la barra */
-  border-radius: 25px;       /* Bordes redondeados */
+  
+  border-radius: 50px;       /* Bordes redondeados */
 }
 
 /* ------------------------------------- MODAL -------------------------------------- */
@@ -35,22 +54,22 @@ ion-content {
 /* Posicionar el primer botón */
 #open-modal-1 {
   position: absolute;
-  top: 50px;  /* Ajusta la posición según lo necesites */
-  left: 50px;
+  top: 250px;  /* Ajusta la posición según lo necesites */
+  left: 250px;
 }
 
 /* Posicionar el segundo botón */
 #open-modal-2 {
   position: absolute;
-  top: 150px;
-  left: 200px;
+  top: 350px;
+  left: 500px;
 }
 
 /* Posicionar el tercer botón */
 #open-modal-3 {
   position: absolute;
-  top: 250px;
-  left: 400px;
+  top: 450px;
+  left: 700px;
 }
 
 /* -------------------------------- INFORMACIÓN DE LA ESTACIÓN ------------------------ */

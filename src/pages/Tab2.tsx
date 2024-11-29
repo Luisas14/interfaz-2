@@ -122,7 +122,7 @@ const Tab2: React.FC = () => {
           </div>
         </div>
 
-        <ExploreContainer name="Tab 2 page" />
+       
       </IonContent>
     </IonPage>
   );
