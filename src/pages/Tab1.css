@@ -1,135 +1,153 @@
-/* Estilo para IonContent */
-ion-content {
-  border-color: black; /* Define el color del borde */
-  border-width: 10px;   /* Establece el grosor del borde */
-  border-style: solid;  /* Estilo de borde: sólido */
-}
-
-/* Estilo para la barra de búsqueda */
-.search-bar {
-  position: absolute;      /* Posición absoluta */
-  top: 10px;               /* 10px desde la parte superior */
-  left: 50%;               /* Centrado horizontal */
-  transform: translateX(-50%); /* Centrado exacto */
-  width: 80%;              /* Ancho al 80% del contenedor */
-  max-width: 600px;        /* Ancho máximo de 600px */
-}
-
-.searchbar {
-  margin-bottom: 20px;    /* Espacio debajo de la barra */
-  border-radius: 25px;    /* Bordes redondeados */
-}
+/* ---------------------------------- ESTILOS GENERALES ---------------------------------- */
 
 /* Estilo para el contenido principal */
 .custom-ion-content {
-  padding: 20px;           /* Relleno de 20px */
+  padding: 20px;            /* Relleno de 20px */
   background-color: #f4f4f9; /* Color de fondo */
   font-family: 'Roboto', sans-serif; /* Fuente */
 }
 
-/* Estilo para el botón que abre el modal */
-#open-modal {
-  position: absolute;     /* Posición absoluta */
-  top: 50%;                /* Centrado vertical */
-  left: 50%;               /* Centrado horizontal */
-  transform: translate(-50%, -50%); /* Centrado exacto */
-  width: 5px;             /* Ancho de 10px (diámetro del círculo) */
-  height: 5px;            /* Altura de 10px (diámetro del círculo) */
-  background-color: #3880ff; /* Color azul */
-  border-radius: 3%;      /* Forma circular */
-  padding: 0;              /* Sin relleno */
+/* Estilo para IonContent */
+ion-content {
+  background-image: url('/workspaces/interfaz-2/resources/Mapa.png');
+  border-color: black;       /* Define el color del borde */
+  border-width: 3px;         /* Establece el grosor del borde */
+  border-style: solid;       /* Estilo de borde: sólido */
 }
 
-/* Estilos del contenido del modal */
-.modal-content {
-  padding: 20px;           /* Relleno de 20px */
-  background-color: #ffffff; /* Fondo blanco */
-  color: #333333;          /* Color de texto */
+/* --------------------------------- BARRA DE BÚSQUEDA ---------------------------------- */
+
+/* Estilo para la barra de búsqueda (flotante) */
+.search-bar {
+  position: fixed;           /* Fija la barra de búsqueda en la parte superior */
+  top: 10px;                 /* 10px desde la parte superior */
+  left: 50%;                 /* Centrado horizontal */
+  transform: translateX(-50%); /* Centrado exacto */
+  width: 80%;                /* Ancho al 80% del contenedor */
+  max-width: 600px;          /* Ancho máximo de 600px */
+  z-index: 1000;             /* Asegura que esté por encima de otros elementos */
+  margin-bottom: 20px;       /* Espacio debajo de la barra */
+  border-radius: 25px;       /* Bordes redondeados */
 }
+
+/* ------------------------------------- MODAL -------------------------------------- */
+
+/* Posicionar el primer botón */
+#open-modal-1 {
+  position: absolute;
+  top: 50px;  /* Ajusta la posición según lo necesites */
+  left: 50px;
+}
+
+/* Posicionar el segundo botón */
+#open-modal-2 {
+  position: absolute;
+  top: 150px;
+  left: 200px;
+}
+
+/* Posicionar el tercer botón */
+#open-modal-3 {
+  position: absolute;
+  top: 250px;
+  left: 400px;
+}
+
+/* -------------------------------- INFORMACIÓN DE LA ESTACIÓN ------------------------ */
 
 /* Estilo de la información de la estación */
 .station-info {
-  margin-top: 20px;        /* Margen superior */
+  margin-top: 20px;            /* Margen superior */
 }
 
 .station-info h2 {
-  font-size: 2rem;         /* Tamaño de fuente grande */
-  color: #3880ff;          /* Color azul */
+  font-size: 2rem;             /* Tamaño de fuente grande */
+  color: #3880ff;              /* Color azul */
 }
 
 .station-info p {
-  font-size: 1rem;         /* Tamaño de fuente normal */
-  color: #666666;          /* Color gris */
+  font-size: 1rem;             /* Tamaño de fuente normal */
+  color: #666666;              /* Color gris */
 }
+
+/* ---------------------------------- ESTADÍSTICAS ------------------------------------- */
 
 /* Estilos para las estadísticas */
 .stats {
-  display: flex;           /* Flexbox */
+  display: flex;               /* Flexbox */
   justify-content: space-around; /* Espacio igual entre los elementos */
-  margin-top: 20px;        /* Margen superior */
+  margin-top: 20px;            /* Margen superior */
 }
 
 .stats div {
-  text-align: center;      /* Centrado de texto */
+  text-align: center;          /* Centrado de texto */
 }
 
 .stats p {
-  font-size: 1.25rem;      /* Tamaño de fuente más grande */
-  font-weight: bold;       /* Negrita */
+  font-size: 1.25rem;          /* Tamaño de fuente más grande */
+  font-weight: bold;           /* Negrita */
 }
+
+/* --------------------------------- TABLA DE BICICLETAS DISPONIBLES ----------------- */
 
 /* Estilos para la tabla de bicicletas disponibles */
 .available-bikes table {
-  width: 100%;             /* Ancho completo */
-  margin-top: 20px;        /* Margen superior */
-  border-collapse: collapse; /* Colapsa los bordes de la tabla */
+  width: 100%;                 /* Ancho completo */
+  margin-top: 20px;            /* Margen superior */
+  border-collapse: collapse;   /* Colapsa los bordes de la tabla */
 }
 
 .available-bikes th, .available-bikes td {
-  padding: 10px;           /* Relleno en celdas */
-  border: 1px solid #ddd;  /* Borde gris claro */
+  padding: 10px;               /* Relleno en celdas */
+  border: 1px solid #ddd;      /* Borde gris claro */
 }
+
+/* ----------------------------------- CHECKBOX --------------------------------------- */
 
 /* Estilos para los contenedores de checkbox */
 .checkbox-container {
-  display: flex;           /* Flexbox */
-  align-items: center;     /* Centrado vertical */
-  margin-top: 20px;        /* Margen superior */
+  display: flex;               /* Flexbox */
+  align-items: center;         /* Centrado vertical */
+  margin-top: 20px;            /* Margen superior */
 }
 
 .checkbox-container ion-checkbox {
-  margin-right: 10px;      /* Espacio entre el checkbox y la etiqueta */
+  margin-right: 10px;          /* Espacio entre el checkbox y la etiqueta */
 }
+
+/* --------------------------------- BOTÓN DE RESERVA ---------------------------------- */
 
 /* Estilo para el botón de reserva */
 .reserve-btn {
-  margin-top: 20px;        /* Margen superior */
-  background-color: #28a745; /* Color verde */
-  color: white;            /* Color blanco */
+  margin-top: 20px;            /* Margen superior */
+  background-color: #28a745;   /* Color verde */
+  color: white;                /* Color blanco */
 }
 
 /* Estilo para el botón deshabilitado */
 .reserve-btn[disabled] {
-  background-color: #cccccc; /* Color gris */
-  color: #666666;            /* Color gris oscuro */
+  background-color: #cccccc;   /* Color gris */
+  color: #666666;              /* Color gris oscuro */
 }
+
+/* --------------------------------- TABLA DE VEHÍCULOS ---------------------------- */
 
 /* Estilos de la tabla (encabezados y celdas) */
 table th, table td {
-  padding: 10px;           /* Relleno en celdas */
-  text-align: left;        /* Alineación a la izquierda */
+  padding: 10px;               /* Relleno en celdas */
+  text-align: left;            /* Alineación a la izquierda */
 }
 
 table th {
-  background-color: #f4f4f4; /* Fondo gris claro */
-  font-weight: bold;         /* Negrita en encabezados */
+  background-color: #f4f4f4;   /* Fondo gris claro */
+  font-weight: bold;           /* Negrita en encabezados */
 }
 
 table td {
-  background-color: #ffffff; /* Fondo blanco */
+  background-color: #ffffff;   /* Fondo blanco */
 }
 
 /* Estilo específico para la tercera columna (tipo de vehículo) */
 table th:nth-child(3), table td:nth-child(3) {
-  background-color: #e0f7fa; /* Fondo azul claro */
+  background-color: #e0f7fa;   /* Fondo azul claro */
 }

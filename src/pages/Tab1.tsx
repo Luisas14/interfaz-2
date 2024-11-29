@@ -3,184 +3,228 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, Ion
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 
-const Tab1: React.FC = () => {
+// Componente reutilizable para los modales
+const TransportModal: React.FC<{
+  modalRef: React.RefObject<HTMLIonModalElement>;
+  presentingElement: HTMLElement | null;
+  dismiss: () => void;
+  canDismiss: () => Promise<boolean>;
+  isElectricBikeChecked: boolean;
+  setIsElectricBikeChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  isElectricScooterChecked: boolean;
+  setIsElectricScooterChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  isElectricVehicleChecked: boolean;
+  setIsElectricVehicleChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  isAnyTransportChecked: boolean;
+}> = ({
+  modalRef, 
+  presentingElement, 
+  dismiss, 
+  canDismiss, 
+  isElectricBikeChecked, 
+  setIsElectricBikeChecked, 
+  isElectricScooterChecked, 
+  setIsElectricScooterChecked, 
+  isElectricVehicleChecked, 
+  setIsElectricVehicleChecked, 
+  isAnyTransportChecked
+}) => (
+  <IonModal ref={modalRef} trigger="open-modal" canDismiss={canDismiss} presentingElement={presentingElement!}>
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>Transportes Eléctricos</IonTitle>
+        <IonButtons slot="end">
+          <IonButton onClick={dismiss}>X</IonButton>
+        </IonButtons>
+      </IonToolbar>
+    </IonHeader>
 
-  // Referencias para el modal y la página
-  const modal = useRef<HTMLIonModalElement>(null);
+    <IonContent className="ion-padding">
+      <div className="station-info">
+        <h2>Ubicación / Dirección</h2>
+        <p>Costo por tipo de vehículo: </p>
+        <p>bici eléctrica ($1.11) / scooters eléctricos ($2.22) / vehículo eléctrico ($3.33)</p>
+        <div className="stats">
+          <div>
+            <p className="text-2xl font-bold">1</p>
+            <p>Bicis eléctricas</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold">2</p>
+            <p>Scooters eléctricos</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold">3</p>
+            <p>Vehículos eléctricos</p>
+          </div>
+        </div>
+        <div className="available-bikes">
+          <h3>Transportes eléctricos disponibles</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>ID del transporte</th>
+                <th>Rango estimado</th>
+                <th>Tipo de vehículo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Aquí puedes agregar dinámicamente las filas de transportes */}
+              <tr>
+                <td>...0803</td>
+                <td>34 km</td>
+                <td>Bicicleta eléctrica</td>
+              </tr>
+              <tr>
+                <td>...5667</td>
+                <td>23 km</td>
+                <td>Scooter eléctrico</td>
+              </tr>
+              <tr>
+                <td>...0116</td>
+                <td>23 km</td>
+                <td>Scooter eléctrico</td>
+              </tr>
+              <tr>
+                <td>...3773</td>
+                <td>12 km</td>
+                <td>Vehículo eléctrico</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Checkboxes */}
+      <div className="checkbox-container" style={{ marginTop: '20px' }}>
+        <IonCheckbox
+          checked={isElectricBikeChecked}
+          onIonChange={(e) => setIsElectricBikeChecked(e.detail.checked)} 
+        />
+        <IonLabel>Reservar Bici Eléctrica</IonLabel>
+      </div>
+
+      <div className="checkbox-container" style={{ marginTop: '20px' }}>
+        <IonCheckbox
+          checked={isElectricScooterChecked}
+          onIonChange={(e) => setIsElectricScooterChecked(e.detail.checked)} 
+        />
+        <IonLabel>Reservar Scooter Eléctrico</IonLabel>
+      </div>
+
+      <div className="checkbox-container" style={{ marginTop: '20px' }}>
+        <IonCheckbox
+          checked={isElectricVehicleChecked}
+          onIonChange={(e) => setIsElectricVehicleChecked(e.detail.checked)} 
+        />
+        <IonLabel>Reservar Vehículo Eléctrico</IonLabel>
+      </div>
+
+      {/* Botón para reservar, solo si al menos un checkbox está marcado */}
+      <IonButton expand="block" disabled={!isAnyTransportChecked} style={{ marginTop: '20px' }}>
+        Reservar
+      </IonButton>
+    </IonContent>
+  </IonModal>
+);
+
+const Tab1: React.FC = () => {
+  const modal1 = useRef<HTMLIonModalElement>(null);
+  const modal2 = useRef<HTMLIonModalElement>(null);
+  const modal3 = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
 
-  // Estado para manejar el elemento de presentación del modal
   const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
-
-  // Hook para mostrar la hoja de acción
   const [present] = useIonActionSheet();
 
-  // Estados para los checkboxes de "Reservar"
   const [isElectricBikeChecked, setIsElectricBikeChecked] = useState<boolean>(false);
   const [isElectricScooterChecked, setIsElectricScooterChecked] = useState<boolean>(false);
   const [isElectricVehicleChecked, setIsElectricVehicleChecked] = useState<boolean>(false);
 
-  // Verificar si al menos uno de los checkboxes está marcado
   const isAnyTransportChecked = isElectricBikeChecked || isElectricScooterChecked || isElectricVehicleChecked;
 
-  // Este hook se ejecuta cuando el componente se monta
   useEffect(() => {
     setPresentingElement(page.current);
   }, []);
 
-  // Función para cerrar el modal
-  function dismiss() {
-    modal.current?.dismiss();
-  }
+  const dismiss = () => {
+    if (modal1.current) modal1.current.dismiss();
+    if (modal2.current) modal2.current.dismiss();
+    if (modal3.current) modal3.current.dismiss();
+  };
 
-  // Función para manejar la validación antes de cerrar el modal
-  function canDismiss() {
+  const canDismiss = () => {
     return new Promise<boolean>((resolve, reject) => {
       present({
-        header: '¿Esta seguro?',
+        header: '¿Está seguro?',
         buttons: [
-          {
-            text: 'Yes',
-            role: 'confirm',
-          },
-          {
-            text: 'No',
-            role: 'cancel',
-          },
+          { text: 'Sí', role: 'confirm' },
+          { text: 'No', role: 'cancel' }
         ],
         onWillDismiss: (ev) => {
-          if (ev.detail.role === 'confirm') {
-            resolve(true);
-          } else {
-            reject();
-          }
-        },
+          ev.detail.role === 'confirm' ? resolve(true) : reject();
+        }
       });
     });
-  }
+  };
 
   return (
     <IonPage ref={page}>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Bogotá se Mueve: Vive la Energía de la Ciudad</IonTitle>
+          <IonTitle>BOGOTÁ SE MUEVE</IonTitle>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
+      <IonContent id='contenido'>
         <IonSearchbar placeholder="Ingresa el nombre de una estación o una dirección"></IonSearchbar>
-        <ExploreContainer name="Tab 1 page reyzxczxceno" />
+        <ExploreContainer name="Tab 1 page" />
 
-        <IonButton id="open-modal" expand="block"></IonButton>
+        {/* Modales con ID únicos para los botones */}
+        <IonButton id="open-modal-1" expand="block">Abrir Modal 1</IonButton>
+        <IonButton id="open-modal-2" expand="block">Abrir Modal 2</IonButton>
+        <IonButton id="open-modal-3" expand="block">Abrir Modal 3</IonButton>
 
-        <IonModal ref={modal} trigger="open-modal" canDismiss={canDismiss} presentingElement={presentingElement!}>
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Transportes Eléctricos </IonTitle>
-              <IonButtons slot="end">
-                <IonButton onClick={() => dismiss()}>X</IonButton>
-              </IonButtons>
-            </IonToolbar>
-          </IonHeader>
-
-          <IonContent className="ion-padding">
-            <div className="station-info">
-              <h2>Ubicacion / Direccion</h2>
-              <p>Costo por tipo de vehiculo: </p>
-              <p>bici eléctrica ($1.11) / scooters eléctricos ($2.22) / vehículo eléctrico ($3.33)</p>
-              <div className="stats">
-                <div>
-                  <p className="text-2xl font-bold">1</p>
-                  <p>Bicis eléctricas</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">2</p>
-                  <p>Scooters eléctricos</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">3</p>
-                  <p>Vehículos eléctricos</p>
-                </div>
-              </div>
-              <div className="available-bikes">
-                <h3>Transportes eléctricos disponibles</h3>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID del transporte</th>
-                      <th>Rango estimado</th>
-                      <th>Tipo de vehículo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>...0803</td>
-                      <td>34 km</td>
-                      <td>Bicicleta eléctrica</td>
-                    </tr>
-                    <tr>
-                      <td>...5667</td>
-                      <td>23 km</td>
-                      <td>Scooter eléctrico</td>
-                    </tr>
-                    <tr>
-                      <td>...0116</td>
-                      <td>23 km</td>
-                      <td>Scooter eléctrico</td>
-                    </tr>
-                    <tr>
-                      <td>...3773</td>
-                      <td>12 km</td>
-                      <td>Vehículo eléctrico</td>
-                    </tr>
-                    <tr>
-                      <td>...4884</td>
-                      <td>12 km</td>
-                      <td>Vehículo eléctrico</td>
-                    </tr>
-                    <tr>
-                      <td>...5995</td>
-                      <td>12 km</td>
-                      <td>Vehículo eléctrico</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Checkbox para "Reservar" Bicicleta Eléctrica */}
-            <div className="checkbox-container" style={{ marginTop: '20px' }}>
-              <IonCheckbox
-                checked={isElectricBikeChecked}
-                onIonChange={(e) => setIsElectricBikeChecked(e.detail.checked)} 
-              />
-              <IonLabel>Reservar Bici Eléctrica</IonLabel>
-            </div>
-
-            {/* Checkbox para "Reservar" Scooter Eléctrico */}
-            <div className="checkbox-container" style={{ marginTop: '20px' }}>
-              <IonCheckbox
-                checked={isElectricScooterChecked}
-                onIonChange={(e) => setIsElectricScooterChecked(e.detail.checked)} 
-              />
-              <IonLabel>Reservar Scooter Eléctrico</IonLabel>
-            </div>
-
-            {/* Checkbox para "Reservar" Vehículo Eléctrico */}
-            <div className="checkbox-container" style={{ marginTop: '20px' }}>
-              <IonCheckbox
-                checked={isElectricVehicleChecked}
-                onIonChange={(e) => setIsElectricVehicleChecked(e.detail.checked)} 
-              />
-              <IonLabel>Reservar Vehículo Eléctrico</IonLabel>
-            </div>
-
-            {/* Botón para reservar, solo si al menos un checkbox está marcado */}
-            <IonButton expand="block" disabled={!isAnyTransportChecked} style={{ marginTop: '20px' }}>
-              Reservar
-            </IonButton>
-          </IonContent>
-        </IonModal>
+        {/* Modales reutilizables */}
+        <TransportModal
+          modalRef={modal1}
+          presentingElement={presentingElement}
+          dismiss={dismiss}
+          canDismiss={canDismiss}
+          isElectricBikeChecked={isElectricBikeChecked}
+          setIsElectricBikeChecked={setIsElectricBikeChecked}
+          isElectricScooterChecked={isElectricScooterChecked}
+          setIsElectricScooterChecked={setIsElectricScooterChecked}
+          isElectricVehicleChecked={isElectricVehicleChecked}
+          setIsElectricVehicleChecked={setIsElectricVehicleChecked}
+          isAnyTransportChecked={isAnyTransportChecked}
+        />
+        <TransportModal
+          modalRef={modal2}
+          presentingElement={presentingElement}
+          dismiss={dismiss}
+          canDismiss={canDismiss}
+          isElectricBikeChecked={isElectricBikeChecked}
+          setIsElectricBikeChecked={setIsElectricBikeChecked}
+          isElectricScooterChecked={isElectricScooterChecked}
+          setIsElectricScooterChecked={setIsElectricScooterChecked}
+          isElectricVehicleChecked={isElectricVehicleChecked}
+          setIsElectricVehicleChecked={setIsElectricVehicleChecked}
+          isAnyTransportChecked={isAnyTransportChecked}
+        />
+        <TransportModal
+          modalRef={modal3}
+          presentingElement={presentingElement}
+          dismiss={dismiss}
+          canDismiss={canDismiss}
+          isElectricBikeChecked={isElectricBikeChecked}
+          setIsElectricBikeChecked={setIsElectricBikeChecked}
+          isElectricScooterChecked={isElectricScooterChecked}
+          setIsElectricScooterChecked={setIsElectricScooterChecked}
+          isElectricVehicleChecked={isElectricVehicleChecked}
+          setIsElectricVehicleChecked={setIsElectricVehicleChecked}
+          isAnyTransportChecked={isAnyTransportChecked}
+        />
       </IonContent>
     </IonPage>
   );
