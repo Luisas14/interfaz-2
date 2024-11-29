@@ -1,62 +1,64 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonButtons, IonButton, IonModal, useIonActionSheet,IonCheckbox, IonLabel} from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonButtons, IonButton, IonModal, useIonActionSheet, IonCheckbox, IonLabel } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 
 const Tab1: React.FC = () => {
 
   // Referencias para el modal y la página
-  const modal = useRef<HTMLIonModalElement>(null); // 'modal' se usará para acceder al modal, para abrirlo y cerrarlo
-  const page = useRef(null); // 'page' es una referencia a la página que se usará para el elemento que contiene el modal.
+  const modal = useRef<HTMLIonModalElement>(null);
+  const page = useRef(null);
 
   // Estado para manejar el elemento de presentación del modal
-  const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null); // Guarda el elemento al cual se le presentará el modal
+  const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
 
-  // Hook para mostrar la hoja de acción, que se usa cuando intentamos cerrar el modal
-  const [present] = useIonActionSheet(); // 'present' es la función que abre una hoja de acción
+  // Hook para mostrar la hoja de acción
+  const [present] = useIonActionSheet();
 
-  // Estado para el checkbox de "Reservar"
-  const [isChecked, setIsChecked] = useState<boolean>(false); // Controla si el checkbox está marcado o no
+  // Estados para los checkboxes de "Reservar"
+  const [isElectricBikeChecked, setIsElectricBikeChecked] = useState<boolean>(false);
+  const [isElectricScooterChecked, setIsElectricScooterChecked] = useState<boolean>(false);
+  const [isElectricVehicleChecked, setIsElectricVehicleChecked] = useState<boolean>(false);
 
-  // Este hook se ejecuta cuando el componente se monta (cuando se carga la página)
+  // Verificar si al menos uno de los checkboxes está marcado
+  const isAnyTransportChecked = isElectricBikeChecked || isElectricScooterChecked || isElectricVehicleChecked;
+
+  // Este hook se ejecuta cuando el componente se monta
   useEffect(() => {
-    setPresentingElement(page.current); // Se configura 'page' como el elemento de presentación del modal
-  }, []); // El segundo parámetro vacío asegura que esto se ejecute solo una vez, al montar el componente
+    setPresentingElement(page.current);
+  }, []);
 
   // Función para cerrar el modal
   function dismiss() {
-    modal.current?.dismiss(); // Si el modal está presente, se llama a la función dismiss() para cerrarlo
+    modal.current?.dismiss();
   }
 
   // Función para manejar la validación antes de cerrar el modal
   function canDismiss() {
     return new Promise<boolean>((resolve, reject) => {
-      // 'present' muestra una hoja de acción (un popup con botones)
       present({
-        header: 'Are you sure?', // Título del popup
+        header: 'Are you sure?',
         buttons: [
           {
-            text: 'Yes', // Botón de confirmación
-            role: 'confirm', // El rol 'confirm' indica que este botón cerrará el modal
+            text: 'Yes',
+            role: 'confirm',
           },
           {
-            text: 'No', // Botón de cancelación
-            role: 'cancel', // El rol 'cancel' indica que este botón no cerrará el modal
+            text: 'No',
+            role: 'cancel',
           },
         ],
-        // Evento que se ejecuta cuando se cierra la hoja de acción
         onWillDismiss: (ev) => {
           if (ev.detail.role === 'confirm') {
-            resolve(true); // Si el usuario confirma (presiona "Yes"), resolvemos la promesa con "true"
+            resolve(true);
           } else {
-            reject(); // Si el usuario cancela (presiona "No"), rechazamos la promesa y no cerramos el modal
+            reject();
           }
         },
       });
     });
   }
 
-  // La estructura del JSX de la página
   return (
     <IonPage ref={page}>
       <IonHeader>
@@ -83,67 +85,100 @@ const Tab1: React.FC = () => {
             </IonToolbar>
           </IonHeader>
 
-          <IonContent className="ion-padding">          
+          <IonContent className="ion-padding">
             <div className="station-info">
               <h2>Ubicacion / Direccion</h2>
               <p>Costo por tipo de vehiculo: </p>
-              <p>bici eléctrica ($1.11) / scooters eléctrico ($2.22) /vehículo eléctrico ($3.33)</p>
+              <p>bici eléctrica ($1.11) / scooters eléctricos ($2.22) / vehículo eléctrico ($3.33)</p>
               <div className="stats">
                 <div>
-                  <p className="text-2xl font-bold">44</p>
-                  <p>clásica</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">35</p>
-                  <p>bicis eléctricas</p>
-                </div>
-                <div>
                   <p className="text-2xl font-bold">1</p>
-                  <p>puertos disponibles</p>
+                  <p>Bicis eléctricas</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">2</p>
+                  <p>Scooters eléctricos</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">3</p>
+                  <p>Vehículos eléctricos</p>
                 </div>
               </div>
               <div className="available-bikes">
-                <h3>Bicis eléctricas disponibles</h3>
+                <h3>Transportes eléctricos disponibles</h3>
                 <table>
                   <thead>
                     <tr>
-                      <th>ID de la bici</th>
+                      <th>ID del transporte</th>
                       <th>Rango estimado</th>
+                      <th>Tipo de vehículo</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>...0803</td>
-                      <td>34 mi</td>
+                      <td>34 km</td>
+                      <td>Bicicleta eléctrica</td>
                     </tr>
                     <tr>
                       <td>...5667</td>
-                      <td>34 mi</td>
+                      <td>23 km</td>
+                      <td>Scooter eléctrico</td>
                     </tr>
                     <tr>
                       <td>...0116</td>
-                      <td>34 mi</td>
+                      <td>23 km</td>
+                      <td>Scooter eléctrico</td>
                     </tr>
                     <tr>
                       <td>...3773</td>
-                      <td>34 mi</td>
+                      <td>12 km</td>
+                      <td>Vehículo eléctrico</td>
+                    </tr>
+                    <tr>
+                      <td>...4884</td>
+                      <td>12 km</td>
+                      <td>Vehículo eléctrico</td>
+                    </tr>
+                    <tr>
+                      <td>...5995</td>
+                      <td>12 km</td>
+                      <td>Vehículo eléctrico</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
 
-            {/* Checkbox para "Reservar" */}
+            {/* Checkbox para "Reservar" Bicicleta Eléctrica */}
             <div className="checkbox-container" style={{ marginTop: '20px' }}>
               <IonCheckbox
-                checked={isChecked}
-                onIonChange={(e) => setIsChecked(e.detail.checked)} // Actualiza el estado del checkbox
+                checked={isElectricBikeChecked}
+                onIonChange={(e) => setIsElectricBikeChecked(e.detail.checked)} 
               />
-              <IonLabel>Reservar</IonLabel>
+              <IonLabel>Reservar Bici Eléctrica</IonLabel>
             </div>
 
-            {/* Botón para reservar, solo si el checkbox está marcado */}
-            <IonButton expand="block" disabled={!isChecked} style={{ marginTop: '20px' }}>
+            {/* Checkbox para "Reservar" Scooter Eléctrico */}
+            <div className="checkbox-container" style={{ marginTop: '20px' }}>
+              <IonCheckbox
+                checked={isElectricScooterChecked}
+                onIonChange={(e) => setIsElectricScooterChecked(e.detail.checked)} 
+              />
+              <IonLabel>Reservar Scooter Eléctrico</IonLabel>
+            </div>
+
+            {/* Checkbox para "Reservar" Vehículo Eléctrico */}
+            <div className="checkbox-container" style={{ marginTop: '20px' }}>
+              <IonCheckbox
+                checked={isElectricVehicleChecked}
+                onIonChange={(e) => setIsElectricVehicleChecked(e.detail.checked)} 
+              />
+              <IonLabel>Reservar Vehículo Eléctrico</IonLabel>
+            </div>
+
+            {/* Botón para reservar, solo si al menos un checkbox está marcado */}
+            <IonButton expand="block" disabled={!isAnyTransportChecked} style={{ marginTop: '20px' }}>
               Reservar
             </IonButton>
           </IonContent>
