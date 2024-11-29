@@ -1,222 +1,135 @@
+/* Estilo para IonContent */
 ion-content {
-  border-color: black; 
-  /* Define el color del borde de IonContent, en este caso será rojo. */
-  
-  border-width: 10px; 
-  /* Establece el grosor del borde. Aquí se define un borde de 10 píxeles de grosor. */
-  
-  border-style: solid; 
-  /* Define el estilo del borde. El valor 'solid' significa que el borde será una línea continua (otras opciones podrían ser 'dashed' o 'dotted'). */
+  border-color: black; /* Define el color del borde */
+  border-width: 10px;   /* Establece el grosor del borde */
+  border-style: solid;  /* Estilo de borde: sólido */
 }
 
+/* Estilo para la barra de búsqueda */
 .search-bar {
-  position: absolute;
-  /* Establece la posición del elemento como absoluta, lo que permite moverlo libremente dentro de su contenedor. */
-  
-  top: 10px; 
-  /* Posiciona la barra de búsqueda 10 píxeles desde la parte superior de su contenedor. */
-  
-  left: 50%; 
-  /* Posiciona la barra de búsqueda a la mitad del contenedor en el eje horizontal (50% desde el lado izquierdo). */
-  
-  transform: translateX(-50%); 
-  /* Ajusta la posición de la barra de búsqueda para que se centre exactamente en la mitad de su contenedor, corrigiendo el desplazamiento por la propiedad 'left'. */
-  
-  width: 80%; 
-  /* Define el ancho de la barra de búsqueda como el 80% del ancho del contenedor. */
-  
-  max-width: 600px; 
-  /* Define el ancho máximo de la barra de búsqueda a 600 píxeles. Esto evita que la barra de búsqueda crezca más allá de este valor en pantallas grandes. */
-}
-
-/* Personalización del contenido principal */
-.custom-ion-content {
-  padding: 20px; 
-  /* Añade un relleno de 20 píxeles alrededor del contenido de IonContent para darle espacio interno. */
-  
-  background-color: #f4f4f9; 
-  /* Define un color de fondo muy suave, gris claro, para el contenido principal. */
-  
-  font-family: 'Roboto', sans-serif; 
-  /* Establece la fuente del contenido como 'Roboto', una fuente sans-serif. */
+  position: absolute;      /* Posición absoluta */
+  top: 10px;               /* 10px desde la parte superior */
+  left: 50%;               /* Centrado horizontal */
+  transform: translateX(-50%); /* Centrado exacto */
+  width: 80%;              /* Ancho al 80% del contenedor */
+  max-width: 600px;        /* Ancho máximo de 600px */
 }
 
 .searchbar {
-  margin-bottom: 20px; 
-  /* Añade un margen inferior de 20 píxeles a la barra de búsqueda para separar los elementos que están debajo de ella. */
-  
-  border-radius: 25px; 
-  /* Redondea los bordes de la barra de búsqueda con un radio de 25 píxeles para darle un estilo más suave. */
+  margin-bottom: 20px;    /* Espacio debajo de la barra */
+  border-radius: 25px;    /* Bordes redondeados */
 }
 
-.open-modal-btn {
-  margin-top: 20px; 
-  /* Añade un margen superior de 20 píxeles al botón para abrir el modal, separándolo del contenido anterior. */
-  
-  background-color: #3880ff; 
-  /* Establece el color de fondo del botón como un tono azul (similar a los botones de Ionic). */
-  
-  color: white; 
-  /* Define el color del texto dentro del botón como blanco. */
-}
-
-/* Modal content custom styles */
-.modal-content {
-  padding: 20px; 
-  /* Añade un relleno de 20 píxeles dentro del contenido del modal para dar espacio alrededor de los elementos. */
-  
-  background-color: #ffffff; 
-  /* Establece el color de fondo del modal como blanco. */
-  
-  color: #333333; 
-  /* Define el color del texto dentro del modal como un gris oscuro, para mejor legibilidad. */
-}
-
-.station-info {
-  margin-top: 20px; 
-  /* Añade un margen superior de 20 píxeles para separar la sección de información de la estación de los elementos anteriores. */
-}
-
-.station-info h2 {
-  font-size: 2rem; 
-  /* Define el tamaño de la fuente del título de la estación como 2 rem (fuente más grande que el texto normal). */
-  
-  color: #3880ff; 
-  /* Establece el color del título como azul, coincidiendo con el color del botón. */
-}
-
-.station-info p {
-  font-size: 1rem; 
-  /* Define el tamaño de la fuente de los párrafos como 1 rem, que es el tamaño de texto normal. */
-  
-  color: #666666; 
-  /* Establece el color del texto en gris, un tono más suave que el de los títulos para diferenciarlo. */
-}
-
-.stats {
-  display: flex; 
-  /* Utiliza Flexbox para organizar los elementos dentro de la clase "stats". */
-  
-  justify-content: space-around; 
-  /* Alinea los elementos dentro del contenedor de manera que haya espacio igual entre ellos. */
-  
-  margin-top: 20px; 
-  /* Añade un margen superior de 20 píxeles para separar las estadísticas de los elementos superiores. */
-}
-
-.stats div {
-  text-align: center; 
-  /* Centra el texto dentro de cada elemento dentro de la clase "stats". */
-}
-
-.stats p {
-  font-size: 1.25rem; 
-  /* Define el tamaño de la fuente de los párrafos dentro de la sección de estadísticas como 1.25 rem, un poco más grande que el texto normal. */
-  
-  font-weight: bold; 
-  /* Establece el texto en negrita para los elementos dentro de la sección de estadísticas. */
-}
-
-.available-bikes table {
-  width: 100%; 
-  /* Establece el ancho de la tabla al 100% del contenedor padre. */
-  
-  margin-top: 20px; 
-  /* Añade un margen superior de 20 píxeles para separar la tabla de los elementos anteriores. */
-  
-  border-collapse: collapse; 
-  /* Colapsa los bordes de la tabla para que los bordes de las celdas se vean como uno solo. */
-}
-
-.available-bikes th, .available-bikes td {
-  padding: 10px; 
-  /* Añade 10 píxeles de relleno dentro de las celdas de la tabla para que el contenido no esté pegado a los bordes. */
-  
-  border: 1px solid #ddd; 
-  /* Define un borde de 1 píxel de color gris claro alrededor de las celdas. */
-}
-
-.checkbox-container {
-  display: flex; 
-  /* Utiliza Flexbox para organizar los elementos dentro del contenedor del checkbox. */
-  
-  align-items: center; 
-  /* Centra los elementos verticalmente dentro del contenedor. */
-  
-  margin-top: 20px; 
-  /* Añade un margen superior de 20 píxeles para separar el contenedor de los elementos anteriores. */
-}
-
-.checkbox-container ion-checkbox {
-  margin-right: 10px; 
-  /* Añade un margen derecho de 10 píxeles entre el checkbox y la etiqueta que lo acompaña. */
-}
-
-.reserve-btn {
-  margin-top: 20px; 
-  /* Añade un margen superior de 20 píxeles al botón de reserva para separarlo de los elementos anteriores. */
-  
-  background-color: #28a745; 
-  /* Define el color de fondo del botón como verde (un color que se asocia generalmente con la acción de confirmar o aceptar). */
-  
-  color: white; 
-  /* Define el color del texto dentro del botón como blanco. */
-}
-
-/* Estilo para el botón deshabilitado */
-.reserve-btn[disabled] {
-  background-color: #cccccc; 
-  /* Cambia el color de fondo a gris cuando el botón está deshabilitado. */
-  
-  color: #666666; 
-  /* Cambia el color del texto a gris más oscuro cuando el botón está deshabilitado. */
-}
-
-table th, table td {
-  padding: 10px; 
-  /* Añade 10 píxeles de relleno dentro de las celdas de la tabla. */
-  
-  text-align: left; 
-  /* Alinea el contenido de las celdas a la izquierda. */
-}
-
-table th {
-  background-color: #f4f4f4; 
-  /* Establece un fondo gris claro para los encabezados de las tablas. */
-  
-  font-weight: bold; 
-  /* Establece el texto de los encabezados en negrita. */
-}
-
-table td {
-  background-color: #ffffff; 
-  /* Define el fondo de las celdas de la tabla como blanco. */
-}
-
-/* Estilo específico para la nueva columna */
-table th:nth-child(3),
-table td:nth-child(3) {
-  background-color: #e0f7fa; 
-  /* Establece un color de fondo azul claro para la tercera columna (que contiene el tipo de vehículo). */
+/* Estilo para el contenido principal */
+.custom-ion-content {
+  padding: 20px;           /* Relleno de 20px */
+  background-color: #f4f4f9; /* Color de fondo */
+  font-family: 'Roboto', sans-serif; /* Fuente */
 }
 
 /* Estilo para el botón que abre el modal */
 #open-modal {
-  position: absolute;  /* Esto coloca el botón en una posición absoluta dentro de su contenedor */
-  top: 50%;             /* Esto lo posiciona en la mitad vertical de la pantalla */
-  left: 50%;            /* Esto lo posiciona en la mitad horizontal de la pantalla */
-  transform: translate(-50%, -50%); /* Ajusta el botón para que se centre completamente en ambas direcciones */
-  font-size: 1.5rem;    /* Cambia el tamaño de la fuente */
-  padding: 12px 24px;   /* Ajusta el relleno para hacer el botón más grande */
-  background-color: #3880ff; /* Cambia el color de fondo si lo deseas */
-  color: white;         /* Cambia el color del texto del botón */
-  border-radius: 12px;  /* Redondea las esquinas del botón */
+  position: absolute;     /* Posición absoluta */
+  top: 50%;                /* Centrado vertical */
+  left: 50%;               /* Centrado horizontal */
+  transform: translate(-50%, -50%); /* Centrado exacto */
+  width: 5px;             /* Ancho de 10px (diámetro del círculo) */
+  height: 5px;            /* Altura de 10px (diámetro del círculo) */
+  background-color: #3880ff; /* Color azul */
+  border-radius: 3%;      /* Forma circular */
+  padding: 0;              /* Sin relleno */
 }
 
-/* Si deseas que el botón tenga un tamaño específico */
-#open-modal {
-  width: 200px; /* Define el ancho del botón */
-  height: 50px; /* Define la altura del botón */
+/* Estilos del contenido del modal */
+.modal-content {
+  padding: 20px;           /* Relleno de 20px */
+  background-color: #ffffff; /* Fondo blanco */
+  color: #333333;          /* Color de texto */
 }
 
-/* Puedes ajustar otras propiedades según sea necesario */
+/* Estilo de la información de la estación */
+.station-info {
+  margin-top: 20px;        /* Margen superior */
+}
+
+.station-info h2 {
+  font-size: 2rem;         /* Tamaño de fuente grande */
+  color: #3880ff;          /* Color azul */
+}
+
+.station-info p {
+  font-size: 1rem;         /* Tamaño de fuente normal */
+  color: #666666;          /* Color gris */
+}
+
+/* Estilos para las estadísticas */
+.stats {
+  display: flex;           /* Flexbox */
+  justify-content: space-around; /* Espacio igual entre los elementos */
+  margin-top: 20px;        /* Margen superior */
+}
+
+.stats div {
+  text-align: center;      /* Centrado de texto */
+}
+
+.stats p {
+  font-size: 1.25rem;      /* Tamaño de fuente más grande */
+  font-weight: bold;       /* Negrita */
+}
+
+/* Estilos para la tabla de bicicletas disponibles */
+.available-bikes table {
+  width: 100%;             /* Ancho completo */
+  margin-top: 20px;        /* Margen superior */
+  border-collapse: collapse; /* Colapsa los bordes de la tabla */
+}
+
+.available-bikes th, .available-bikes td {
+  padding: 10px;           /* Relleno en celdas */
+  border: 1px solid #ddd;  /* Borde gris claro */
+}
+
+/* Estilos para los contenedores de checkbox */
+.checkbox-container {
+  display: flex;           /* Flexbox */
+  align-items: center;     /* Centrado vertical */
+  margin-top: 20px;        /* Margen superior */
+}
+
+.checkbox-container ion-checkbox {
+  margin-right: 10px;      /* Espacio entre el checkbox y la etiqueta */
+}
+
+/* Estilo para el botón de reserva */
+.reserve-btn {
+  margin-top: 20px;        /* Margen superior */
+  background-color: #28a745; /* Color verde */
+  color: white;            /* Color blanco */
+}
+
+/* Estilo para el botón deshabilitado */
+.reserve-btn[disabled] {
+  background-color: #cccccc; /* Color gris */
+  color: #666666;            /* Color gris oscuro */
+}
+
+/* Estilos de la tabla (encabezados y celdas) */
+table th, table td {
+  padding: 10px;           /* Relleno en celdas */
+  text-align: left;        /* Alineación a la izquierda */
+}
+
+table th {
+  background-color: #f4f4f4; /* Fondo gris claro */
+  font-weight: bold;         /* Negrita en encabezados */
+}
+
+table td {
+  background-color: #ffffff; /* Fondo blanco */
+}
+
+/* Estilo específico para la tercera columna (tipo de vehículo) */
+table th:nth-child(3), table td:nth-child(3) {
+  background-color: #e0f7fa; /* Fondo azul claro */
+}

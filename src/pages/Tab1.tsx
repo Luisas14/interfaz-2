@@ -37,7 +37,7 @@ const Tab1: React.FC = () => {
   function canDismiss() {
     return new Promise<boolean>((resolve, reject) => {
       present({
-        header: 'Are you sure?',
+        header: '¿Esta seguro?',
         buttons: [
           {
             text: 'Yes',
@@ -71,16 +71,14 @@ const Tab1: React.FC = () => {
         <IonSearchbar placeholder="Ingresa el nombre de una estación o una dirección"></IonSearchbar>
         <ExploreContainer name="Tab 1 page reyzxczxceno" />
 
-        <IonButton id="open-modal" expand="block">
-          Open Modal
-        </IonButton>
+        <IonButton id="open-modal" expand="block"></IonButton>
 
         <IonModal ref={modal} trigger="open-modal" canDismiss={canDismiss} presentingElement={presentingElement!}>
           <IonHeader>
             <IonToolbar>
-              <IonTitle>Modal</IonTitle>
+              <IonTitle>Transportes Eléctricos </IonTitle>
               <IonButtons slot="end">
-                <IonButton onClick={() => dismiss()}>Close</IonButton>
+                <IonButton onClick={() => dismiss()}>X</IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>
