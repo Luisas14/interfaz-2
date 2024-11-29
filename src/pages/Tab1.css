@@ -16,3 +16,90 @@ ion-content {
   width: 80%;
   max-width: 600px;
 }
+
+/* Personalización del contenido principal */
+.custom-ion-content {
+  padding: 20px;
+  background-color: #f4f4f9; /* Color de fondo */
+  font-family: 'Roboto', sans-serif; /* Cambiar la fuente */
+}
+
+.searchbar {
+  margin-bottom: 20px;
+  border-radius: 25px;
+}
+
+.open-modal-btn {
+  margin-top: 20px;
+  background-color: #3880ff; /* Fondo azul */
+  color: white;
+}
+
+/* Modal content custom styles */
+.modal-content {
+  padding: 20px;
+  background-color: #ffffff;
+  color: #333333; /* Texto oscuro */
+}
+
+.station-info {
+  margin-top: 20px;
+}
+
+.station-info h2 {
+  font-size: 1.5rem;
+  color: #3880ff; /* Título en color azul */
+}
+
+.station-info p {
+  font-size: 1rem;
+  color: #666666;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.stats div {
+  text-align: center;
+}
+
+.stats p {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.available-bikes table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.available-bikes th, .available-bikes td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.checkbox-container ion-checkbox {
+  margin-right: 10px;
+}
+
+.reserve-btn {
+  margin-top: 20px;
+  background-color: #28a745; /* Fondo verde para el botón de reservar */
+  color: white;
+}
+
+/* Estilo para el botón deshabilitado */
+.reserve-btn[disabled] {
+  background-color: #cccccc;
+  color: #666666;
+}
